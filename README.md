@@ -1,8 +1,8 @@
-This is a repository for Group 19's small project in COP4331, Processes of Object Oriented Software. This is a contact manager application using a LAMP stack.
+This repository hosts Group 19's small project for COP4331. The project is an application for managing contacts, built on a LAMP stack.
 
 Group members:
 
-Brown, Nicholas
-Haider, Noor
-Lopez, Julio
-Perez, Jovany
+* Nicholas Brown
+* Noor Haider
+* Julio Lopez
+* Jovany Perez
