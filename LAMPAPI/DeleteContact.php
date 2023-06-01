@@ -11,7 +11,7 @@ if ($conn->connect_error)
 else
 {
     //$stmt = $conn->prepare("INSERT into Contacts (Name,Phone,Email,UserID) VALUES(?,?,?,?)");
-    $stmt = $conn->prepare("DELETE FROM contacts WHERE ID = ?");
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ?");
     $stmt->bind_param('i', $contactId);
 
     $stmt->execute();

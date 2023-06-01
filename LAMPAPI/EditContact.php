@@ -14,7 +14,7 @@ if ($conn->connect_error)
 else
 {
     //$stmt = $conn->prepare("INSERT into Contacts (Name,Phone,Email,UserID) VALUES(?,?,?,?)");
-    $stmt = $conn->prepare("UPDATE contacts SET Name = ?, Phone = ?, Email = ? WHERE ID = ?");
+    $stmt = $conn->prepare("UPDATE Contacts SET Name = ?, Phone = ?, Email = ? WHERE ID = ?");
     $stmt->bind_param('sssi', $name, $phone, $email, $contactId);
 
     $stmt->execute();
