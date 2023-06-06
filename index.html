@@ -1,22 +1,67 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>COP 4331 LAMP Stack Demo</title>
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-</head>
-<body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Group 19 Contact List</title>
+        <link rel = "stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/bdf03958bd.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="./index.html">Welcome</a>
+        </div>
+        <div class = "container">
+            <div class = "signup">
+                <h1 id="title"> Sign Up </h1>
+                <form>
+                    <div class="btn-field">
+                        <button type="button" id="signupBtn">Sign Up</button>
+                        <button type="button" id="signinBtn"class = "disable">Log In</button>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-field" id="nameField">
+                            <i class="fa-solid fa-user" ></i>
+                            <input type="text" placeholder="Name">
+                        </div>
+                        <div class="input-field">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Email">
+                        </div>
+                        <div class="input-field">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="btn-field">
+                        <button type="button" id="submitBtn" onclick = "window.location.href='./home.html';">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-<h1 id="title">COP 4331 LAMP Stack Demo</h1>
+        <script>
+            let signupBtn = document.getElementById("signupBtn")
+            let signinBtn = document.getElementById("signinBtn")
+            let nameField = document.getElementById("nameField")
+            let title = document.getElementById("title")
 
-<div id="loginDiv">
-	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
-	<span id="loginResult"></span>
-</div>
+            signinBtn.onclick = function(){
+                nameField.style.maxHeight = "0";
+                title.innerHTML = "Log in";
+                signupBtn.classList.add("disable");
+                signinBtn.classList.remove("disable");
+            }
 
-</body>
+            signupBtn.onclick = function(){
+                nameField.style.maxHeight = "60px";
+                title.innerHTML = "Sign Up";
+                signupBtn.classList.remove("disable");
+                signinBtn.classList.add("disable");
+            }
+
+        </script>
+    </body>
 </html>

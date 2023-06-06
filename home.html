@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Group 19 Contact List</title>
+        <link rel = "stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/bdf03958bd.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="topnav">
+            <a>Welcome</a>
+            <div class="logout">
+                <a class="active" href="https://github.com/perezjovany/COP4331-Contact-Manager">Github</a>
+                <a class="active" href="./index.html">Logout</a>
+            </div>
+         </div>
+        <div class = "container">
+            <div class="contact-home">
+                <div class="input-field">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <hr class="gradient">
+                <div class="contact-list">
+                    <div class="contact">
+                        <div class="prof-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="contact-info">
+                            <p>Julio Lopez</p>
+                            <p>|</p>
+                            <p>999-999-9999</p>
+                            <p>|</p>
+                            <p>example@gmail.com</p>
+                            <p>|</p>
+                        </div>
+                        <div class="contact-icons">
+                            <button class="contact-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="contact-delete"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-add">
+                <h1>New Contact</h1>
+                <div class="input-group2">
+                    <div class="input-field">
+                        <i class="fa-solid fa-user" ></i>
+                        <input type="text" placeholder="Name">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="phone" placeholder="Phone">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" placeholder="Email">
+                </div>
+                <button type="button" id="contactSubmit">Submit Contact</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
