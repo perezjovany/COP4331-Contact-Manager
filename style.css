@@ -256,7 +256,9 @@ p{
 }
 
 .contact-list{
-    padding-top: 7px;
+    height: 550px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .contact-icons{
@@ -266,4 +268,32 @@ p{
     justify-content: center;
     align-items: center;
     gap: 30px;
+}
+
+.email{
+    width: 300px;
+    overflow: hidden;
+}
+
+.name{
+    width: 200px;
+}
+
+.phone{
+    width: 200px;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #3154a0;
+    border-radius: 12px;
+}
+
+.error_msg{
+    padding-top: 10px;
+    color: red;
+    font-weight: bold;
 }

@@ -25,43 +25,30 @@
                 </div>
                 <hr class="gradient">
                 <div class="contact-list">
-                    <div class="contact">
-                        <div class="prof-icon">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="contact-info">
-                            <p>Julio Lopez</p>
-                            <p>|</p>
-                            <p>999-999-9999</p>
-                            <p>|</p>
-                            <p>example@gmail.com</p>
-                            <p>|</p>
-                        </div>
-                        <div class="contact-icons">
-                            <button class="contact-edit"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="contact-delete"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="contact-add">
                 <h1>New Contact</h1>
                 <div class="input-group2">
-                    <div class="input-field">
+                    <div class="input-field" id = "nameInputBox">
                         <i class="fa-solid fa-user" ></i>
-                        <input type="text" placeholder="Name">
+                        <input type="text" placeholder="Name" id="nameInput">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-phone"></i>
-                        <input type="phone" placeholder="Phone">
+                        <input type="phone" placeholder="Phone" id="phoneInput">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="email" placeholder="Email">
+                        <input type="email" placeholder="Email" id="emailInput">
+                    </div>
+                    <div class="error_msg" id ="error_msg"></div>
                 </div>
                 <button type="button" id="contactSubmit">Submit Contact</button>
             </div>
         </div>
     </div>
+    <script src = "script.js"></script>
 </body>
 </html>
