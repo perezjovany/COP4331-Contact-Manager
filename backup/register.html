@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+</head>
+<body>
+
+<div class="center">
+    <h1>Account Registration</h1>
+    <form action="register.php" method="post">
+        <table>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="reg_email"></td>
+            </tr>
+
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="reg_user"></td>
+            </tr>
+
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="reg_pass"></td>
+            </tr>
+
+            <tr>
+                <td>Confirm Password:</td>
+                <td><input type="password" name="reg_confirm_pass"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><input type="submit" name="reg_submit" value="Register"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2">Already have an account? <a href="login.html">Login</a></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
