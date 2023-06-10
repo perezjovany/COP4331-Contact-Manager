@@ -23,13 +23,17 @@
                         <button type="button" id="signinBtn"class = "disable">Log In</button>
                     </div>
                     <div class="input-group">
-                        <div class="input-field" id="nameField">
-                            <i class="fa-solid fa-user" ></i>
-                            <input type="text" placeholder="Name">
+                        <div class="input-field" id="firstName">
+                            <i class="fa-solid fa-f"></i>
+                            <input type="text" placeholder="First Name">
+                        </div>
+                        <div class="input-field" id="lastName">
+                            <i class="fa-solid fa-l"></i>
+                            <input type="text" placeholder="Last Name">
                         </div>
                         <div class="input-field">
-                            <i class="fa-solid fa-envelope"></i>
-                            <input type="email" placeholder="Email" id="loginName">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="test" placeholder="Username" id="loginName">
                         </div>
                         <div class="input-field">
                             <i class="fa-solid fa-lock"></i>
@@ -47,18 +51,21 @@
         <script>
             let signupBtn = document.getElementById("signupBtn")
             let signinBtn = document.getElementById("signinBtn")
-            let nameField = document.getElementById("nameField")
+            let firstName = document.getElementById("firstName")
+            let lastName = document.getElementById("lastName")
             let title = document.getElementById("title")
 
             signinBtn.onclick = function(){
-                nameField.style.maxHeight = "0";
+                firstName.style.maxHeight = "0";
+                lastName.style.maxHeight = "0";
                 title.innerHTML = "Log in";
                 signupBtn.classList.add("disable");
                 signinBtn.classList.remove("disable");
             }
 
             signupBtn.onclick = function(){
-                nameField.style.maxHeight = "60px";
+                firstName.style.maxHeight = "60px";
+                lastName.style.maxHeight = "60px";
                 title.innerHTML = "Sign Up";
                 signupBtn.classList.remove("disable");
                 signinBtn.classList.add("disable");
