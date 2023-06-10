@@ -49,23 +49,23 @@
         </div>
 
         <script>
-            let signupBtn = document.getElementById("signupBtn")
-            let signinBtn = document.getElementById("signinBtn")
-            let firstName = document.getElementById("firstName")
-            let lastName = document.getElementById("lastName")
-            let title = document.getElementById("title")
+            let signupBtn = document.getElementById("signupBtn");
+            let signinBtn = document.getElementById("signinBtn");
+            let firstNameField = document.getElementById("firstName");
+            let lastNameField = document.getElementById("lastName");
+            let title = document.getElementById("title");
 
             signinBtn.onclick = function(){
-                firstName.style.maxHeight = "0";
-                lastName.style.maxHeight = "0";
+                firstNameField.style.maxHeight = "0";
+                lastNameField.style.maxHeight = "0";
                 title.innerHTML = "Log in";
                 signupBtn.classList.add("disable");
                 signinBtn.classList.remove("disable");
             }
 
             signupBtn.onclick = function(){
-                firstName.style.maxHeight = "60px";
-                lastName.style.maxHeight = "60px";
+                firstNameField.style.maxHeight = "60px";
+                lastNameField.style.maxHeight = "60px";
                 title.innerHTML = "Sign Up";
                 signupBtn.classList.remove("disable");
                 signinBtn.classList.add("disable");

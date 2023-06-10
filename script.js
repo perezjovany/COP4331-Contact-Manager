@@ -129,7 +129,6 @@ function addContact(){
         return;
     }
     messages = []
-    addContact(nameInput.value, phoneInput.value, emailInput.value);
 
     let name = nameInput.value;
     let phone = phoneInput.value;
@@ -276,7 +275,7 @@ function GetContact(contactId) {
             if (this.readyState == 4 && this.status == 200) {
 
                 let jsonObject = JSON.parse( xhr.responseText );
-                
+
             }
         };
 
