@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, serif;
+    height: 100vh;
+    overflow: hidden;
+
+    /* Gradient Background */
+    background: linear-gradient(120deg,#2980b9, #8e44ad, #2980b9, #8e44ad);
+    background-size: 200% 200%;
+
+    /* Animate the Gradient Background */
+    animation: gradient 15s ease infinite;
+    color: #000;
+    line-height: 1.6;
+    padding: 30px;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+a {
+    color: #2691d9;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+.logout {
+    float: right;
+}
