@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/bdf03958bd.js" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
     </head>
     <body>
         <div class="topnav">
@@ -28,16 +29,17 @@
                         </div>
                         <div class="input-field">
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" placeholder="Email">
+                            <input type="email" placeholder="Email" id="loginName">
                         </div>
                         <div class="input-field">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" placeholder="Password">
+                            <input type="password" placeholder="Password" id="loginPassword">
                         </div>
                     </div>
                     <div class="btn-field">
-                        <button type="button" id="submitBtn" onclick = "window.location.href='./home.html';">Submit</button>
+                        <button type="button" id="submitBtn" onclick ="doLogin()">Submit</button>
                     </div>
+                    <h1 id="loginResult"></h1>
                 </form>
             </div>
         </div>
