@@ -23,13 +23,14 @@
                         <button type="button" id="signinBtn"class = "disable">Log In</button>
                     </div>
                     <div class="input-group">
-                        <div class="input-field" id="firstName">
+                        <div id = "signupResult">RESULT</div>
+                        <div class="input-field" id="fName">
                             <i class="fa-solid fa-f"></i>
-                            <input type="text" placeholder="First Name">
+                            <input type="text" placeholder="First Name" id="firstName">
                         </div>
-                        <div class="input-field" id="lastName">
+                        <div class="input-field" id="lName">
                             <i class="fa-solid fa-l"></i>
-                            <input type="text" placeholder="Last Name">
+                            <input type="text" placeholder="Last Name" id="lastName">
                         </div>
                         <div class="input-field">
                             <i class="fa-solid fa-user"></i>
@@ -51,8 +52,8 @@
         <script>
             let signupBtn = document.getElementById("signupBtn");
             let signinBtn = document.getElementById("signinBtn");
-            let firstNameField = document.getElementById("firstName");
-            let lastNameField = document.getElementById("lastName");
+            let firstNameField = document.getElementById("fName");
+            let lastNameField = document.getElementById("lName");
             let title = document.getElementById("title");
 
             signinBtn.onclick = function(){
@@ -69,6 +70,15 @@
                 title.innerHTML = "Sign Up";
                 signupBtn.classList.remove("disable");
                 signinBtn.classList.add("disable");
+            }
+
+            submitBtn.onclick = function(){
+                if(signinBtn.classList.contains("disable")){
+                    doSignup();
+                }
+                else{
+                    doLogin();
+                }
             }
 
         </script>
