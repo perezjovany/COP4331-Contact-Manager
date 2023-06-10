@@ -1,0 +1,299 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.container{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap;
+    margin-top: 80px;
+    gap: 100px;
+}
+
+.topnav {
+    background-color: #3154a0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80%;
+}
+.logout{
+    padding-right: 20px;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 27px;
+    font-family: 'Pacifico', cursive;
+  }
+
+.signup{
+    width: 90%;
+    max-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px 60px 70px;
+    text-align: center;
+
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow:  20px 20px 60px #bebebe,-20px -20px 60px #ffffff;
+}
+
+.signup h1{
+    font-size: 30px;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.signup h1::after{
+    content: '';
+    width: 50px;
+    height: 4px;
+    background-color: black;
+    border-radius: 3px;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.input-field{
+    background: #d3d2d2;
+    margin: 15px 0;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    max-height: 65px;
+    transition: max-height 0.2s;
+    overflow: hidden;
+}
+input{
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 5px;
+}
+
+.input-field i{
+    margin-left: 15px;
+    color: #999;
+}
+
+.btn-field{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-field button{
+    flex-basis: 48%;
+    background: #3154a0;
+    color: #fff;
+    height: 40px;
+    border-radius: 15px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.btn-field button a{
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.input-group{
+    height: 220px;
+}
+
+.btn-field button.disable{
+    background: #eaeaea;
+    color: #555;
+}
+
+
+
+
+
+.contact-home{
+    width: 100%;
+    max-width: 900px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    padding: 50px 60px 70px;
+    text-align: center;
+
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow:  20px 20px 60px #bebebe,-20px -20px 60px #ffffff;
+}
+
+.contact-add{
+    width: 100%;
+    max-width: 400px;
+    height: 350px;
+    top: 50%;
+    left: 17%;
+    padding: 50px 60px 70px;
+    margin-bottom: 100px;
+    text-align: center;
+
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow:  20px 20px 60px #bebebe,-20px -20px 60px #ffffff;
+}
+
+.input-group2{
+    margin-top: 50px;
+    height: 200px;
+}
+
+.contact-add button{
+    background: #3154a0;
+    color: #fff;
+    height: 40px;
+    width: 350px;
+    border-radius: 15px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+hr.gradient {
+    margin-top: 10px;
+    margin-left: 5px;
+    height: 3px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(
+      90deg,
+      #3154a0 0%,
+      #e0e0e0 100%
+    );
+  }
+
+ .contact{
+    background: #d3d2d2;
+    margin: 15px 0;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    max-height: 65px;
+    transition: max-height 0.2s;
+    overflow: hidden;
+    height: 45px;
+  }
+
+.prof-icon i{
+    margin-left: 15px;
+    color: #999;
+}
+
+p{
+    font-size: 17px;
+    color: #616161;
+}
+
+.contact-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 700px;
+}
+
+.contact-info p{
+    font-weight:bold;
+}
+.contact{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.contact-edit{
+    text-decoration: none;
+    cursor: pointer;
+    color: #999;
+    background: none;
+    border: none;
+    font-size: 20px;
+    align-items: center;
+    width: 20px;
+}
+.contact-delete{
+    text-decoration: none;
+    cursor: pointer;
+    color: #999;
+    background: none;
+    border: none;
+    font-size: 20px;
+    align-items: center;
+}
+
+.contact-edit i:hover{
+    color:#3154a0;
+}
+
+.contact-delete i:hover{
+    color:rgb(245, 58, 58);
+}
+
+.contact-list{
+    height: 550px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.contact-icons{
+    padding-right:20px;
+    width: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.email{
+    width: 300px;
+    overflow: hidden;
+}
+
+.name{
+    width: 200px;
+}
+
+.phone{
+    width: 200px;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #3154a0;
+    border-radius: 12px;
+}
+
+.error_msg{
+    padding-top: 10px;
+    color: red;
+    font-weight: bold;
+}
