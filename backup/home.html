@@ -1,0 +1,22 @@
+<!-- Current iteration is just for testing purposes -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" type="text/css" href="home.css" />
+</head>
+<body>
+<div class="container">
+  <h1>Welcome, <span id="username"></span>!</h1>
+  <p>You are now logged in to our website. Feel free to browse around and explore!</p>
+  <a class="logout" href="logout.php">Log out</a>
+</div>
+
+<script>
+  // Fetch the username from local storage and display it
+  document.getElementById("username").textContent = localStorage.getItem("username");
+</script>
+</body>
+</html>
