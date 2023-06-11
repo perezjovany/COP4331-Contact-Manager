@@ -194,93 +194,14 @@ function addContact(){
     let phone = phoneInput.value;
     let email = emailInput.value;
 
-    if(!name || !name.trim()) return;
-    if(!phone || !phone.trim()) return;
-    if(!email || !email.trim()) return;
-
     //Add the contact to the api
     addContactApi(name, phone, email);
-    
-    const contactDiv = document.createElement('div');
-    contactDiv.className = 'contact';
+    loadContacts()
 
-    const contactInfo = document.createElement('div');
-    contactInfo.className = 'contact-info'
-
-    const imageDiv = document.createElement('div');
-    imageDiv.className = 'prof-icon';
-    const profImg = document.createElement('i');
-    imageDiv.append(profImg);
-    profImg.className = 'fa-solid fa-user';
-
-    const editDiv = document.createElement('button');
-    editDiv.className = 'contact-edit';
-    const editImg = document.createElement('i');
-    editDiv.append(editImg);
-    editImg.className = 'fa-solid fa-pen-to-square';
-    editDiv.id = 'edit';
-    
-    const deleteDiv = document.createElement('button');
-    deleteDiv.className = 'contact-delete';
-    const deleteImg = document.createElement('i');
-    deleteDiv.append(deleteImg);
-    deleteImg.className = 'fa-solid fa-trash';
-
-    const nameDiv = document.createElement('p');
-    nameDiv.className = 'name';
-    nameDiv.textContent = name;
-    nameDiv.contentEditable = 'false';
-
-    const phoneDiv = document.createElement('p');
-    phoneDiv.className = 'phone';
-    phoneDiv.textContent = phone;
-    phoneDiv.contentEditable = 'false';
-
-    const emailDiv = document.createElement('p');
-    emailDiv.className = 'email';
-    emailDiv.textContent = email;
-    emailDiv.contentEditable = 'false';
-    
-
-
-    contactDiv.append(imageDiv);
-    contactDiv.append(contactInfo);
-    contactDiv.append(editDiv);
-    contactDiv.append(deleteDiv);
-
-    contactInfo.append(nameDiv);
-    contactInfo.append(phoneDiv);
-    contactInfo.append(emailDiv);
-    
-    
-
-    document.querySelector('.contact-list').append(contactDiv);
     nameInput.value = "";
     phoneInput.value = "";
     emailInput.value = "";
 
-    editDiv.addEventListener('click', () => {
-        if(editDiv.id == 'edit'){
-            editImg.className = 'fa-solid fa-floppy-disk fa-beat-fade';
-            nameDiv.contentEditable = 'true';
-            emailDiv.contentEditable = 'true';
-            phoneDiv.contentEditable = 'true';
-            nameDiv.focus();
-            editDiv.id = 'save';
-        }
-        else{
-            editImg.className = 'fa-solid fa-pen-to-square';
-            nameDiv.contentEditable = 'false';
-            emailDiv.contentEditable = 'false';
-            phoneDiv.contentEditable = 'false';
-            editDiv.id = 'edit';
-        }
-        
-    });
-
-    deleteDiv.addEventListener('click' , () => {
-        document.querySelector('.contact-list').removeChild(contactDiv);
-    });
 }
 
 function addContactApi(name, phoneNum, email) {
@@ -299,7 +220,7 @@ function addContactApi(name, phoneNum, email) {
 
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
+    xhr.open("POST", url, false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = function () {
@@ -340,6 +261,7 @@ function loadContacts(){
                     return;
                 }
 
+                document.querySelector('.contact-list').innerHTML = '';
                 results = jsonObject.results
                 for (let i = 0; i < results.length; i++) {
                     let contactId = results[i]
@@ -352,88 +274,12 @@ function loadContacts(){
                         console.log("An error occurred while getting the contact.");
                     }
                     });
-                      
 
                     let name = contact.Name;
                     let phone = contact.Phone;
                     let email = contact.Email;
-
-                    if(!name || !name.trim()) return;
-                    if(!phone || !phone.trim()) return;
-                    if(!email || !email.trim()) return;
-
-                    const contactDiv = document.createElement('div');
-                    contactDiv.className = 'contact';
-
-                    const contactInfo = document.createElement('div');
-                    contactInfo.className = 'contact-info'
-
-                    const imageDiv = document.createElement('div');
-                    imageDiv.className = 'prof-icon';
-                    const profImg = document.createElement('i');
-                    imageDiv.append(profImg);
-                    profImg.className = 'fa-solid fa-user';
-
-                    const editDiv = document.createElement('button');
-                    editDiv.className = 'contact-edit';
-                    const editImg = document.createElement('i');
-                    editDiv.append(editImg);
-                    editImg.className = 'fa-solid fa-pen-to-square';
-                    editDiv.id = 'edit';
                     
-                    const deleteDiv = document.createElement('button');
-                    deleteDiv.className = 'contact-delete';
-                    const deleteImg = document.createElement('i');
-                    deleteDiv.append(deleteImg);
-                    deleteImg.className = 'fa-solid fa-trash';
-
-                    const nameDiv = document.createElement('p');
-                    nameDiv.className = 'name';
-                    nameDiv.textContent = name;
-                    nameDiv.contentEditable = 'false';
-
-                    const phoneDiv = document.createElement('p');
-                    phoneDiv.className = 'phone';
-                    phoneDiv.textContent = phone;
-                    phoneDiv.contentEditable = 'false';
-
-                    const emailDiv = document.createElement('p');
-                    emailDiv.className = 'email';
-                    emailDiv.textContent = email;
-                    emailDiv.contentEditable = 'false';
-
-                    contactDiv.append(imageDiv);
-                    contactDiv.append(contactInfo);
-                    contactDiv.append(editDiv);
-                    contactDiv.append(deleteDiv);
-                
-                    contactInfo.append(nameDiv);
-                    contactInfo.append(phoneDiv);
-                    contactInfo.append(emailDiv);
-
-                    document.querySelector('.contact-list').append(contactDiv);
-
-                    editDiv.addEventListener('click', () => {
-                        if(editDiv.id == 'edit'){
-                            editImg.className = 'fa-solid fa-floppy-disk fa-beat-fade';
-                            nameDiv.contentEditable = 'true';
-                            emailDiv.contentEditable = 'true';
-                            phoneDiv.contentEditable = 'true';
-                            nameDiv.focus();
-                            editDiv.id = 'save';
-                        }
-                        else{
-                            editImg.className = 'fa-solid fa-pen-to-square';
-                            nameDiv.contentEditable = 'false';
-                            emailDiv.contentEditable = 'false';
-                            phoneDiv.contentEditable = 'false';
-                            editDiv.id = 'edit';
-                        }                        
-                    });
-
-                    deleteDiv.addEventListener('click' , () => {
-                        document.querySelector('.contact-list').removeChild(contactDiv);
-                    });
+                    displayContact(name, phone, email);                    
                 }
 
             }
@@ -445,6 +291,86 @@ function loadContacts(){
     } catch (err) {
         console.log(err.message)
     }
+}
+
+function displayContact(name, phone, email) {
+
+    if(!name || !name.trim()) return;
+    if(!phone || !phone.trim()) return;
+    if(!email || !email.trim()) return;
+
+    const contactDiv = document.createElement('div');
+    contactDiv.className = 'contact';
+
+    const contactInfo = document.createElement('div');
+    contactInfo.className = 'contact-info'
+
+    const imageDiv = document.createElement('div');
+    imageDiv.className = 'prof-icon';
+    const profImg = document.createElement('i');
+    imageDiv.append(profImg);
+    profImg.className = 'fa-solid fa-user';
+
+    const editDiv = document.createElement('button');
+    editDiv.className = 'contact-edit';
+    const editImg = document.createElement('i');
+    editDiv.append(editImg);
+    editImg.className = 'fa-solid fa-pen-to-square';
+    editDiv.id = 'edit';
+    
+    const deleteDiv = document.createElement('button');
+    deleteDiv.className = 'contact-delete';
+    const deleteImg = document.createElement('i');
+    deleteDiv.append(deleteImg);
+    deleteImg.className = 'fa-solid fa-trash';
+
+    const nameDiv = document.createElement('p');
+    nameDiv.className = 'name';
+    nameDiv.textContent = name;
+    nameDiv.contentEditable = 'false';
+
+    const phoneDiv = document.createElement('p');
+    phoneDiv.className = 'phone';
+    phoneDiv.textContent = phone;
+    phoneDiv.contentEditable = 'false';
+
+    const emailDiv = document.createElement('p');
+    emailDiv.className = 'email';
+    emailDiv.textContent = email;
+    emailDiv.contentEditable = 'false';
+
+    contactDiv.append(imageDiv);
+    contactDiv.append(contactInfo);
+    contactDiv.append(editDiv);
+    contactDiv.append(deleteDiv);
+
+    contactInfo.append(nameDiv);
+    contactInfo.append(phoneDiv);
+    contactInfo.append(emailDiv);
+
+    document.querySelector('.contact-list').append(contactDiv);
+
+    editDiv.addEventListener('click', () => {
+        if(editDiv.id == 'edit'){
+            editImg.className = 'fa-solid fa-floppy-disk fa-beat-fade';
+            nameDiv.contentEditable = 'true';
+            emailDiv.contentEditable = 'true';
+            phoneDiv.contentEditable = 'true';
+            nameDiv.focus();
+            editDiv.id = 'save';
+        }
+        else{
+            editImg.className = 'fa-solid fa-pen-to-square';
+            nameDiv.contentEditable = 'false';
+            emailDiv.contentEditable = 'false';
+            phoneDiv.contentEditable = 'false';
+            editDiv.id = 'edit';
+        }                        
+    });
+
+    deleteDiv.addEventListener('click' , () => {
+        document.querySelector('.contact-list').removeChild(contactDiv);
+    });
 }
 
 function getContact(contactId, callback) {
