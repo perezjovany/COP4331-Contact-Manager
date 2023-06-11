@@ -38,6 +38,10 @@
     width:400px;
 }
 
+.logout a{
+    cursor: pointer;
+}
+
 .topnav a {
     float: left;
     color: #f2f2f2;
