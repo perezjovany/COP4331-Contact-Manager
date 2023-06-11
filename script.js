@@ -314,38 +314,6 @@ function addContactApi(name, phoneNum, email) {
     }
 }
 
-function GetContact(contactId) {
-
-    let tmp = {
-        contactId: contactId,
-        userId: userId
-    };
-
-    let jsonPayload = JSON.stringify(tmp);
-
-
-    let url = '/LAMPAPI/GetContact.php';
-
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-
-                let jsonObject = JSON.parse( xhr.responseText );
-
-            }
-        };
-
-        xhr.send(jsonPayload);
-
-
-    } catch (err) {
-    }
-}
-
 function loadContacts(){
 
     let tmp = {
