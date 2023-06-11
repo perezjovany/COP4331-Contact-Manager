@@ -14,10 +14,10 @@
             <a>Welcome</a>
             <div class="logout">
                 <a class="active" href="https://github.com/perezjovany/COP4331-Contact-Manager">Github</a>
-                <a class="active" href="./index.html">Logout</a>
+                <a class="active" onclick="doLogout()">Logout</a>
             </div>
          </div>
-        <div class = "container">
+        <div class = "container2">
             <div class="contact-home">
                 <div class="input-field">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -45,10 +45,18 @@
                     </div>
                     <div class="error_msg" id ="error_msg"></div>
                 </div>
-                <button type="button" id="contactSubmit">Submit Contact</button>
+                <button type="button" id="contactSubmit" onclick="addContact()">Submit Contact</button>
             </div>
         </div>
     </div>
-    <script src = "script.js"></script>
 </body>
+
+    <script src = "script.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function()
+        {
+            readCookie();
+            loadContacts();
+        }, false);
+    </script>
 </html>

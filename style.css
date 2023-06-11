@@ -10,6 +10,15 @@
     justify-content: center; 
     align-items: center; 
     flex-wrap: wrap;
+    margin-top: 0px;
+    gap: 100px;
+}
+
+.container2{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap;
     margin-top: 80px;
     gap: 100px;
 }
@@ -18,12 +27,15 @@
     background-color: #3154a0;
     overflow: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 80%;
 }
 .logout{
+    justify-content: end;
+    align-items: center;
+    display: flex;
     padding-right: 20px;
+    width:400px;
 }
 
 .topnav a {
@@ -43,9 +55,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 50px 60px 70px;
+    padding: 50px 60px 40px;
     text-align: center;
-
     border-radius: 50px;
     background: #e0e0e0;
     box-shadow:  20px 20px 60px #bebebe,-20px -20px 60px #ffffff;
@@ -125,6 +136,16 @@ input{
     color: #555;
 }
 
+
+.notiDiv{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.subBtn{
+    margin-top: 45px;
+}
 
 
 
