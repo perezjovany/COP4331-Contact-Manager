@@ -25,7 +25,7 @@
                     </div>
                     <div class="input-group">
                         <div class="notiDiv" id = "notiDiv">
-                            <div id = "signupResult" ></div>
+                            <p class = "signupResult" id = "signupResult" ></p>
                         </div>
                         <div class="input-field" id="fName">
                             <i class="fa-solid fa-f"></i>
@@ -58,7 +58,7 @@
             let firstNameField = document.getElementById("fName");
             let lastNameField = document.getElementById("lName");
             let title = document.getElementById("title");
-            let results = document.getElementById("notiDiv");
+            let results = document.getElementById("signupResult");
 
             signinBtn.onclick = function(){
                 stopConfetti();
@@ -68,6 +68,8 @@
                 signupBtn.classList.add("disable");
                 signinBtn.classList.remove("disable");
                 results.innerHTML = "";
+                console.log(signinBtn.classList.contains("disable"))
+                console.log(signupBtn.classList.contains("disable"))
             }
 
             signupBtn.onclick = function(){
@@ -77,6 +79,8 @@
                 signupBtn.classList.remove("disable");
                 signinBtn.classList.add("disable");
                 results.innerHTML = "";
+                console.log(signinBtn.classList.contains("disable"))
+                console.log(signupBtn.classList.contains("disable"))
             }
 
             submitBtn.onclick = function(){

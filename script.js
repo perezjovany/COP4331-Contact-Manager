@@ -14,7 +14,7 @@ function doLogin()
     let login = document.getElementById("loginName").value;
     let password = document.getElementById("loginPassword").value;
 
-    document.getElementById("loginResult").innerHTML = "";
+    document.getElementById("signupResult").textContent = ' ';
 
     let tmp = {login:login,password:password};
     let jsonPayload = JSON.stringify( tmp );
@@ -35,7 +35,9 @@ function doLogin()
 
                 if( userId < 1 )
                 {
-                    document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+                    document.getElementById("signupResult").style.color = "red";
+                    document.getElementById("signupResult").textContent = "User/Password combination incorrect";
+
                     return;
                 }
 
@@ -51,7 +53,8 @@ function doLogin()
     }
     catch(err)
     {
-        document.getElementById("loginResult").innerHTML = err.message;
+        document.getElementById("signupResult").textContent = err.message;
+        document.getElementById("signupResult").style.color = "red";
     }
 
 }
@@ -66,11 +69,11 @@ function doSignup() {
     console.log(firstName + ", " + lastName + ", " + username + ", " + password + ", " )
 
     // if (!validSignUpForm(firstName, lastName, username, password)) {
-    //     document.getElementById("signupResult").innerHTML = "invalid signup";
+    //     document.getElementById("signupResult").textContent = "invalid signup";
     //     return;
     // }
 
-    document.getElementById("signupResult").innerHTML = ""; 
+    document.getElementById("signupResult").textContent = ' '; 
 
     let tmp = {
         firstName: firstName,
@@ -95,7 +98,7 @@ function doSignup() {
             }
 
             if (this.status == 409) {
-                document.getElementById("signupResult").innerHTML = "User already exists"; 
+                document.getElementById("signupResult").textContent = "User already exists"; 
                 document.getElementById("signupResult").style.color = "red";
                 return;
             }
@@ -104,7 +107,7 @@ function doSignup() {
 
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
-                document.getElementById("signupResult").innerHTML = "User added"; 
+                document.getElementById("signupResult").textContent = "User added"; 
                 document.getElementById("signupResult").style.color = "green";
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
@@ -115,7 +118,7 @@ function doSignup() {
         xhr.send(jsonPayload);
     } catch (err) {
         document.getElementById("signupResult").style.color = "red";
-        document.getElementById("signupResult").innerHTML = err.message; 
+        document.getElementById("signupResult").textContent = err.message; 
     }
 }
 
@@ -265,7 +268,7 @@ function loadContacts(search){
                     return;
                 }
 
-                document.querySelector('.contact-list').innerHTML = '';
+                document.querySelector('.contact-list').textContent = '';
                 results = jsonObject.results
                 for (let i = 0; i < results.length; i++) {
                     let contactId = results[i]
