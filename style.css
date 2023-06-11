@@ -297,3 +297,9 @@ p{
     color: red;
     font-weight: bold;
 }
+
+.black-border {
+    border: 2px solid black;
+    border-radius: 5px;
+  }
+  

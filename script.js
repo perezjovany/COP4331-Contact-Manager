@@ -197,7 +197,7 @@ function addContact(){
 
     //Add the contact to the api
     addContactApi(name, phone, email);
-    loadContacts()
+    loadContacts("")
 
     nameInput.value = "";
     phoneInput.value = "";
@@ -237,10 +237,10 @@ function addContactApi(name, phoneNum, email) {
     }
 }
 
-function loadContacts(){
+function loadContacts(search){
 
     let tmp = {
-        name: "",
+        name: search,
         userId: userId
     };
 
@@ -362,6 +362,11 @@ function displayContact(name, phone, email, contactId) {
             nameDiv.contentEditable = 'true';
             emailDiv.contentEditable = 'true';
             phoneDiv.contentEditable = 'true';
+
+            nameDiv.classList.add('black-border');
+            emailDiv.classList.add('black-border');
+            phoneDiv.classList.add('black-border');
+
             nameDiv.focus();
             editDiv.id = 'save';
         }
@@ -371,6 +376,10 @@ function displayContact(name, phone, email, contactId) {
             emailDiv.contentEditable = 'false';
             phoneDiv.contentEditable = 'false';
             editDiv.id = 'edit';
+
+            nameDiv.classList.remove('black-border');
+            emailDiv.classList.remove('black-border');
+            phoneDiv.classList.remove('black-border');
 
             let newName = nameDiv.textContent
             let newPhone = phoneDiv.textContent
@@ -475,4 +484,9 @@ function deleteContact(contactId) {
     } catch (err) {
         console.log(err.message)
     }
+}
+
+function searchContact() {
+    search = document.getElementById("searchText").value.toUpperCase();
+    loadContacts(search);
 }
