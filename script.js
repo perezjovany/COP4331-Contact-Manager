@@ -346,7 +346,7 @@ function GetContact(contactId) {
     }
 }
 
-function loadContact(){
+function loadContacts(){
 
     let tmp = {
         name: "",
@@ -489,13 +489,13 @@ function getContact(contactId) {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+
+                let jsonObject = JSON.parse( xhr.responseText );
                 if(jsonObject.error){
                     console.log(jsonObject.error);
                     return;
                 }
-
-                let jsonObject = JSON.parse( xhr.responseText );
-                
+                                
                 return jsonObject
             }
         };
