@@ -375,7 +375,16 @@ function loadContacts(){
                 results = jsonObject.results
                 for (let i = 0; i < results.length; i++) {
                     let contactId = results[i]
-                    let contact = getContact(contactId)
+                    let contact = {}
+                    getContact(contactId, function(result) {
+                    if (result) {
+                        contact = result
+                        console.log(result);
+                    } else {
+                        console.log("An error occurred while getting the contact.");
+                    }
+                    });
+                      
 
                     let name = contact.Name;
                     let phone = contact.Phone;
@@ -470,37 +479,31 @@ function loadContacts(){
     }
 }
 
-function getContact(contactId) {
+function getContact(contactId, callback) {
+  let tmp = {
+    userId: userId,
+    contactId: contactId
+  };
 
-    let tmp = {
-        userId: userId,
-        contactId: contactId
-    };
+  let jsonPayload = JSON.stringify(tmp);
 
-    let jsonPayload = JSON.stringify(tmp);
+  let url = urlBase + '/GetContact.' + extension;
 
-    let url = urlBase + '/GetContact.' + extension;
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", url, false);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-
-                let jsonObject = JSON.parse( xhr.responseText );
-                if(jsonObject.error){
-                    console.log(jsonObject.error);
-                    return;
-                }
-
-                return jsonObject
-            }
-        };
-
-        xhr.send(jsonPayload);
-
-    } catch (err) {
-        console.log(err.message)
+  xhr.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let jsonObject = JSON.parse(xhr.responseText);
+      if (jsonObject.error) {
+        console.log(jsonObject.error);
+        callback(null); // Pass null to indicate an error
+      } else {
+        callback(jsonObject); // Pass the result to the callback
+      }
     }
+  };
+
+  xhr.send(jsonPayload);
 }
