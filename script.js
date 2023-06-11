@@ -196,7 +196,7 @@ function addContact(){
 
     //Add the contact to the api
     addContactApi(name, phone, email);
-    displayContact(name, phone, email);
+    loadContacts()
 
     nameInput.value = "";
     phoneInput.value = "";
@@ -235,38 +235,6 @@ function addContactApi(name, phoneNum, email) {
     }
 }
 
-function GetContact(contactId) {
-
-    let tmp = {
-        contactId: contactId,
-        userId: userId
-    };
-
-    let jsonPayload = JSON.stringify(tmp);
-
-
-    let url = '/LAMPAPI/GetContact.php';
-
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-
-                let jsonObject = JSON.parse( xhr.responseText );
-
-            }
-        };
-
-        xhr.send(jsonPayload);
-
-
-    } catch (err) {
-    }
-}
-
 function loadContacts(){
 
     let tmp = {
@@ -293,6 +261,7 @@ function loadContacts(){
                     return;
                 }
 
+                document.querySelector('.contact-list').innerHTML = '';
                 results = jsonObject.results
                 for (let i = 0; i < results.length; i++) {
                     let contactId = results[i]
@@ -309,7 +278,7 @@ function loadContacts(){
                     let name = contact.Name;
                     let phone = contact.Phone;
                     let email = contact.Email;
-                      
+                    
                     displayContact(name, phone, email);                    
                 }
 
