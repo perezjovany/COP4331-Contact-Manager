@@ -346,5 +346,164 @@ function GetContact(contactId) {
     }
 }
 
+function loadContact(){
+
+    let tmp = {
+        name: "",
+        userId: userId
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
 
 
+    let url = urlBase + '/SearchContact.' + extension;
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+                let jsonObject = JSON.parse( xhr.responseText );
+                if(jsonObject.error){
+                    console.log(jsonObject.error);
+                    return;
+                }
+
+                results = jsonObject.results
+                for (let i = 0; i < results.length; i++) {
+                    contactId = results[i]
+                    contact = getContact()
+
+                    let name = contact.Name;
+                    let phone = contact.Phone;
+                    let email = contact.Email;
+
+                    if(!name || !name.trim()) return;
+                    if(!phone || !phone.trim()) return;
+                    if(!email || !email.trim()) return;
+
+                    const contactDiv = document.createElement('div');
+                    contactDiv.className = 'contact';
+
+                    const contactInfo = document.createElement('div');
+                    contactInfo.className = 'contact-info'
+
+                    const imageDiv = document.createElement('div');
+                    imageDiv.className = 'prof-icon';
+                    const profImg = document.createElement('i');
+                    imageDiv.append(profImg);
+                    profImg.className = 'fa-solid fa-user';
+
+                    const editDiv = document.createElement('button');
+                    editDiv.className = 'contact-edit';
+                    const editImg = document.createElement('i');
+                    editDiv.append(editImg);
+                    editImg.className = 'fa-solid fa-pen-to-square';
+                    editDiv.id = 'edit';
+                    
+                    const deleteDiv = document.createElement('button');
+                    deleteDiv.className = 'contact-delete';
+                    const deleteImg = document.createElement('i');
+                    deleteDiv.append(deleteImg);
+                    deleteImg.className = 'fa-solid fa-trash';
+
+                    const nameDiv = document.createElement('p');
+                    nameDiv.className = 'name';
+                    nameDiv.textContent = name;
+                    nameDiv.contentEditable = 'false';
+
+                    const phoneDiv = document.createElement('p');
+                    phoneDiv.className = 'phone';
+                    phoneDiv.textContent = phone;
+                    phoneDiv.contentEditable = 'false';
+
+                    const emailDiv = document.createElement('p');
+                    emailDiv.className = 'email';
+                    emailDiv.textContent = email;
+                    emailDiv.contentEditable = 'false';
+
+                    contactDiv.append(imageDiv);
+                    contactDiv.append(contactInfo);
+                    contactDiv.append(editDiv);
+                    contactDiv.append(deleteDiv);
+                
+                    contactInfo.append(nameDiv);
+                    contactInfo.append(phoneDiv);
+                    contactInfo.append(emailDiv);
+
+                    document.querySelector('.contact-list').append(contactDiv);
+
+                    editDiv.addEventListener('click', () => {
+                        if(editDiv.id == 'edit'){
+                            editImg.className = 'fa-solid fa-floppy-disk fa-beat-fade';
+                            nameDiv.contentEditable = 'true';
+                            emailDiv.contentEditable = 'true';
+                            phoneDiv.contentEditable = 'true';
+                            nameDiv.focus();
+                            editDiv.id = 'save';
+                        }
+                        else{
+                            editImg.className = 'fa-solid fa-pen-to-square';
+                            nameDiv.contentEditable = 'false';
+                            emailDiv.contentEditable = 'false';
+                            phoneDiv.contentEditable = 'false';
+                            editDiv.id = 'edit';
+                        }                        
+                    });
+
+                    deleteDiv.addEventListener('click' , () => {
+                        document.querySelector('.contact-list').removeChild(contactDiv);
+                    });
+                }
+
+            }
+        };
+
+        xhr.send(jsonPayload);
+
+
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+function getContact(contactId) {
+
+    let tmp = {
+        userId: userId,
+        contactId: contactId
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+
+    let url = urlBase + '/GetContact.' + extension;
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if(jsonObject.error){
+                    console.log(jsonObject.error);
+                    return;
+                }
+
+                let jsonObject = JSON.parse( xhr.responseText );
+                
+                return jsonObject
+            }
+        };
+
+        xhr.send(jsonPayload);
+
+
+    } catch (err) {
+        console.log(err.message)
+    }
+}
