@@ -374,8 +374,8 @@ function loadContacts(){
 
                 results = jsonObject.results
                 for (let i = 0; i < results.length; i++) {
-                    contactId = results[i]
-                    contact = getContact()
+                    let contactId = results[i]
+                    let contact = getContact(contactId)
 
                     let name = contact.Name;
                     let phone = contact.Phone;
@@ -479,9 +479,7 @@ function getContact(contactId) {
 
     let jsonPayload = JSON.stringify(tmp);
 
-
     let url = urlBase + '/GetContact.' + extension;
-
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -495,13 +493,12 @@ function getContact(contactId) {
                     console.log(jsonObject.error);
                     return;
                 }
-                                
+
                 return jsonObject
             }
         };
 
         xhr.send(jsonPayload);
-
 
     } catch (err) {
         console.log(err.message)
