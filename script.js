@@ -4,6 +4,7 @@ const extension = 'php';
 let userId = -1;
 let firstName = "";
 let lastName = "";
+let ids = []
 
 function doLogin()
 {
@@ -232,6 +233,7 @@ function addContactApi(name, phoneNum, email) {
 
 
     } catch (err) {
+        console.log(err.message)
     }
 }
 
@@ -265,6 +267,8 @@ function loadContacts(){
                 results = jsonObject.results
                 for (let i = 0; i < results.length; i++) {
                     let contactId = results[i]
+                    ids[i] = contactId
+
                     let contact = {}
                     getContact(contactId, function(result) {
                     if (result) {
@@ -279,7 +283,7 @@ function loadContacts(){
                     let phone = contact.Phone;
                     let email = contact.Email;
                     
-                    displayContact(name, phone, email);                    
+                    displayContact(name, phone, email, contactId);                    
                 }
 
             }
@@ -293,7 +297,7 @@ function loadContacts(){
     }
 }
 
-function displayContact(name, phone, email) {
+function displayContact(name, phone, email, contactId) {
 
     if(!name || !name.trim()) return;
     if(!phone || !phone.trim()) return;
@@ -301,6 +305,8 @@ function displayContact(name, phone, email) {
 
     const contactDiv = document.createElement('div');
     contactDiv.className = 'contact';
+
+    contactDiv.id = contactId
 
     const contactInfo = document.createElement('div');
     contactInfo.className = 'contact-info'
@@ -365,12 +371,22 @@ function displayContact(name, phone, email) {
             emailDiv.contentEditable = 'false';
             phoneDiv.contentEditable = 'false';
             editDiv.id = 'edit';
+
+            let newName = nameDiv.textContent
+            let newPhone = phoneDiv.textContent
+            let newEmail = emailDiv.textContent
+
+            editContact(newName, newPhone, newEmail, contactDiv.id)
         }                        
     });
 
-    deleteDiv.addEventListener('click' , () => {
-        document.querySelector('.contact-list').removeChild(contactDiv);
-    });
+    deleteDiv.addEventListener('click', () => {
+        const confirmation = confirm('Are you sure you want to delete this contact?');
+        if (confirmation) {
+          document.querySelector('.contact-list').removeChild(contactDiv);
+          deleteContact(contactDiv.id);
+        }
+      });
 }
 
 function getContact(contactId, callback) {
@@ -400,4 +416,63 @@ function getContact(contactId, callback) {
   };
 
   xhr.send(jsonPayload);
+}
+
+function editContact(name, phone, email, contactId) {
+    let tmp = {
+        name: name,
+        phone: phone,
+        email: email,
+        contactId: contactId
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+
+    let url = urlBase + '/EditContact.' + extension;
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            }
+        };
+
+        xhr.send(jsonPayload);
+
+
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+function deleteContact(contactId) {
+    let tmp = {
+        contactId: contactId
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+
+    let url = urlBase + '/DeleteContact.' + extension;
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            }
+        };
+
+        xhr.send(jsonPayload);
+
+
+    } catch (err) {
+        console.log(err.message)
+    }
 }
