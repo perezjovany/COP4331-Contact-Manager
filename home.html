@@ -21,7 +21,7 @@
             <div class="contact-home">
                 <div class="input-field">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search">
+                    <input onkeyup=searchContact() type="text" placeholder="Search" name="search" id="searchText" autocomplete="off">
                 </div>
                 <hr class="gradient">
                 <div class="contact-list">
@@ -56,7 +56,7 @@
         document.addEventListener('DOMContentLoaded', function()
         {
             readCookie();
-            loadContacts();
+            loadContacts("");
         }, false);
     </script>
 </html>
