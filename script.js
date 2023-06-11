@@ -199,7 +199,7 @@ function addContact(){
 
     //Add the contact to the api
     addContactApi(name, phone, email);
-    loadContacts()
+    loadContacts("")
 
     nameInput.value = "";
     phoneInput.value = "";
@@ -235,13 +235,14 @@ function addContactApi(name, phoneNum, email) {
 
 
     } catch (err) {
+        console.log(err.message)
     }
 }
 
-function loadContacts(){
+function loadContacts(search){
 
     let tmp = {
-        name: "",
+        name: search,
         userId: userId
     };
 
@@ -282,7 +283,7 @@ function loadContacts(){
                     let phone = contact.Phone;
                     let email = contact.Email;
                     
-                    displayContact(name, phone, email);                    
+                    displayContact(name, phone, email, contactId);                    
                 }
 
             }
@@ -296,7 +297,7 @@ function loadContacts(){
     }
 }
 
-function displayContact(name, phone, email) {
+function displayContact(name, phone, email, contactId) {
 
     if(!name || !name.trim()) return;
     if(!phone || !phone.trim()) return;
@@ -304,6 +305,8 @@ function displayContact(name, phone, email) {
 
     const contactDiv = document.createElement('div');
     contactDiv.className = 'contact';
+
+    contactDiv.id = contactId
 
     const contactInfo = document.createElement('div');
     contactInfo.className = 'contact-info'
@@ -359,6 +362,11 @@ function displayContact(name, phone, email) {
             nameDiv.contentEditable = 'true';
             emailDiv.contentEditable = 'true';
             phoneDiv.contentEditable = 'true';
+
+            nameDiv.classList.add('black-border');
+            emailDiv.classList.add('black-border');
+            phoneDiv.classList.add('black-border');
+
             nameDiv.focus();
             editDiv.id = 'save';
         }
@@ -368,12 +376,26 @@ function displayContact(name, phone, email) {
             emailDiv.contentEditable = 'false';
             phoneDiv.contentEditable = 'false';
             editDiv.id = 'edit';
+
+            nameDiv.classList.remove('black-border');
+            emailDiv.classList.remove('black-border');
+            phoneDiv.classList.remove('black-border');
+
+            let newName = nameDiv.textContent
+            let newPhone = phoneDiv.textContent
+            let newEmail = emailDiv.textContent
+
+            editContact(newName, newPhone, newEmail, contactDiv.id)
         }                        
     });
 
-    deleteDiv.addEventListener('click' , () => {
-        document.querySelector('.contact-list').removeChild(contactDiv);
-    });
+    deleteDiv.addEventListener('click', () => {
+        const confirmation = confirm('Are you sure you want to delete this contact?');
+        if (confirmation) {
+          document.querySelector('.contact-list').removeChild(contactDiv);
+          deleteContact(contactDiv.id);
+        }
+      });
 }
 
 function getContact(contactId, callback) {
@@ -403,4 +425,68 @@ function getContact(contactId, callback) {
   };
 
   xhr.send(jsonPayload);
+}
+
+function editContact(name, phone, email, contactId) {
+    let tmp = {
+        name: name,
+        phone: phone,
+        email: email,
+        contactId: contactId
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+
+    let url = urlBase + '/EditContact.' + extension;
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            }
+        };
+
+        xhr.send(jsonPayload);
+
+
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+function deleteContact(contactId) {
+    let tmp = {
+        contactId: contactId
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+
+    let url = urlBase + '/DeleteContact.' + extension;
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+            }
+        };
+
+        xhr.send(jsonPayload);
+
+
+    } catch (err) {
+        console.log(err.message)
+    }
+}
+
+function searchContact() {
+    search = document.getElementById("searchText").value.toUpperCase();
+    loadContacts(search);
 }
