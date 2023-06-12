@@ -241,6 +241,8 @@ p{
 
 .contact-info p{
     font-weight:bold;
+    display: flex;
+    align-items: start;
 }
 .contact{
     display: flex;
@@ -294,14 +296,17 @@ p{
 .email{
     width: 300px;
     overflow: hidden;
+    
 }
 
 .name{
     width: 200px;
+    overflow: hidden;
 }
 
 .phone{
     width: 200px;
+    overflow: hidden;
 }
 
 ::-webkit-scrollbar{
