@@ -112,6 +112,7 @@ function doSignup() {
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
                 saveCookie();
+                startConfetti();
             }
         };
 
@@ -551,42 +552,26 @@ function validSignUpForm(fName, lName, user, pass) {
 
     if (lName == "") {
         console.log("Last Name Is Required");
-        messages.push('First Name Is Required');
+        messages.push('Last Name Is Required');
     }
     else {
         console.log("Last Name is Valid");
     }
 
     if (user == "") {
-        console.log("Username Is Blank");
-        messages.push('Username Is Blank');
+        console.log("Username Is Required");
+        messages.push('Username Is Required');
     }
     else {
-        var regex = /(?=.*[a-zA-Z])([a-zA-Z0-9-_]).{3,18}$/;
-
-        if (regex.test(user) == false) {
-            console.log("Username Is Not Valid");
-            messages.push('Username Is Not Valid');
-        }
-        else {
-            console.log("USERNAME IS VALID");
-        }
+        console.log("Username Is Valid");
     }
 
     if (pass == "") {
-        console.log("Password Is Blank");
-        messages.push('Password Is Blank');
+        console.log("Password Is Required");
+        messages.push('Password Is Required');
     }
     else {
-        var regex = /(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}/;
-
-        if (regex.test(pass) == false) {
-            console.log("Password Is Not Valid");
-            messages.push('Password Is Not Valid');
-        }
-        else {
-            console.log("Password Is Valid");
-        }
+        console.log("Password Is Valid");
     }
 
     if(messages.length > 0){
