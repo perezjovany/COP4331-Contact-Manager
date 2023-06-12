@@ -14,7 +14,7 @@ function doLogin()
     let login = document.getElementById("loginName").value;
     let password = document.getElementById("loginPassword").value;
 
-    document.getElementById("signupResult").textContent = ' ';
+    document.getElementById("signupResult").textContent = '';
 
     let tmp = {login:login,password:password};
     let jsonPayload = JSON.stringify( tmp );
@@ -68,12 +68,12 @@ function doSignup() {
 
     console.log(firstName + ", " + lastName + ", " + username + ", " + password + ", " )
 
-    // if (!validSignUpForm(firstName, lastName, username, password)) {
-    //     document.getElementById("signupResult").textContent = "invalid signup";
-    //     return;
-    // }
+    if (!validSignUpForm(firstName, lastName, username, password)) {
+        console.log("INVALID FIRST NAME, LASTNAME, USER, OR PASSWORD SUBMITTED");
+        return;
+    }
 
-    document.getElementById("signupResult").textContent = ' '; 
+    document.getElementById("signupResult").textContent = ''; 
 
     let tmp = {
         firstName: firstName,
@@ -489,16 +489,16 @@ function validAddContact(name, phone, email) {
     let messages = []
 
     if (name == "") {
-        console.log("Name is required");
-        messages.push('Name is required');
+        console.log("Name Is Required");
+        messages.push('Name Is Required');
     }
     else {
-        console.log("Name is valid");
+        console.log("Name Is Valid");
     }
 
     if (phone == "") {
-        console.log("Phone is required");
-        messages.push('Phone is required');
+        console.log("Phone Is Required");
+        messages.push('Phone Is Required');
     }
     else {
         var regex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
@@ -508,13 +508,13 @@ function validAddContact(name, phone, email) {
             messages.push('Phone Is Not Valid. Ex: XXX-XXX-XXXX');
         }
         else {
-            console.log("Phone is valid");
+            console.log("Phone Is Valid");
         }
     }
 
     if (email == "") {
-        console.log("Email is required");
-        messages.push('Email is required');
+        console.log("Email Is Required");
+        messages.push('Email Is Required');
     }
     else {
         var regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
@@ -524,7 +524,7 @@ function validAddContact(name, phone, email) {
             messages.push('Email Is Not Valid. Ex: name@example.com');
         }
         else {
-            console.log("Email is valid");
+            console.log("Email Is Valid");
         }
     }
 
@@ -535,4 +535,65 @@ function validAddContact(name, phone, email) {
 
     return true;
 
+}
+
+function validSignUpForm(fName, lName, user, pass) {
+
+    let messages = []
+
+    if (fName == "") {
+        console.log("First Name Is Required");
+        messages.push('First Name Is Required');
+    }
+    else {
+        console.log("first name IS VALID");
+    }
+
+    if (lName == "") {
+        console.log("Last Name Is Required");
+        messages.push('First Name Is Required');
+    }
+    else {
+        console.log("Last Name is Valid");
+    }
+
+    if (user == "") {
+        console.log("Username Is Blank");
+        messages.push('Username Is Blank');
+    }
+    else {
+        var regex = /(?=.*[a-zA-Z])([a-zA-Z0-9-_]).{3,18}$/;
+
+        if (regex.test(user) == false) {
+            console.log("Username Is Not Valid");
+            messages.push('Username Is Not Valid');
+        }
+        else {
+            console.log("USERNAME IS VALID");
+        }
+    }
+
+    if (pass == "") {
+        console.log("Password Is Blank");
+        messages.push('Password Is Blank');
+    }
+    else {
+        var regex = /(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}/;
+
+        if (regex.test(pass) == false) {
+            console.log("Password Is Not Valid");
+            messages.push('Password Is Not Valid');
+        }
+        else {
+            console.log("Password Is Valid");
+        }
+    }
+
+    if(messages.length > 0){
+        document.getElementById("signupResult").style.color = "red";
+        document.getElementById("signupResult").innerText = messages.join('\n');
+        return false;
+    }
+
+    return true;
 }
