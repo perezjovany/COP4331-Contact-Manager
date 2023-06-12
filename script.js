@@ -179,27 +179,17 @@ function addContact(){
     const phoneInput = document.querySelector('#phoneInput');
     const emailInput = document.querySelector('#emailInput');
     const error_msg = document.querySelector('#error_msg');
-    let messages = []
-    error_msg.innerText = '';
-    if(nameInput.value === '' || nameInput == null){
-        messages.push('Name is required');
-    }
-    if(phoneInput.value === '' || phoneInput == null){
-        messages.push('Phone is required');
-    }
-    if(emailInput.value === '' || emailInput == null){
-        messages.push('Email is required');
-    }
-    if(messages.length > 0){
-        error_msg.innerText = messages.join('\n');
-        return;
-    }
-    messages = []
-
+    
     let name = nameInput.value;
     let phone = phoneInput.value;
     let email = emailInput.value;
 
+    if (!validAddContact(name, phone, email)) {
+        console.log("INVALID NAME, PHONE, OR EMAIL SUBMITTED");
+        return;
+    }
+    error_msg.innerText = ""
+    
     //Add the contact to the api
     addContactApi(name, phone, email);
     loadContacts("")
@@ -492,4 +482,57 @@ function deleteContact(contactId) {
 function searchContact() {
     search = document.getElementById("searchText").value.toUpperCase();
     loadContacts(search);
+}
+
+function validAddContact(name, phone, email) {
+
+    let messages = []
+
+    if (name == "") {
+        console.log("Name is required");
+        messages.push('Name is required');
+    }
+    else {
+        console.log("Name is valid");
+    }
+
+    if (phone == "") {
+        console.log("Phone is required");
+        messages.push('Phone is required');
+    }
+    else {
+        var regex = /^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
+
+        if (regex.test(phone) == false) {
+            console.log("Phone Is Not Valid");
+            messages.push('Phone Is Not Valid. Ex: XXX-XXX-XXXX');
+        }
+        else {
+            console.log("Phone is valid");
+        }
+    }
+
+    if (email == "") {
+        console.log("Email is required");
+        messages.push('Email is required');
+    }
+    else {
+        var regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+        if (regex.test(email) == false) {
+            console.log("Email Is Not Valid");
+            messages.push('Email Is Not Valid. Ex: name@example.com');
+        }
+        else {
+            console.log("Email is valid");
+        }
+    }
+
+    if(messages.length > 0){
+        error_msg.innerText = messages.join('\n');
+        return false;
+    }
+
+    return true;
+
 }
